@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UFC.Logic;
 using WebApplication3;
 
 var builder = WebApplication.CreateBuilder(args);

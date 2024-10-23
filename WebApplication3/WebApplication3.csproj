@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="UFC.Logic">
-      <HintPath>bin\Debug\net8.0\UFC.Logic.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Ufc.Logic\Ufc.Logic.csproj" />
   </ItemGroup>
 
 </Project>
