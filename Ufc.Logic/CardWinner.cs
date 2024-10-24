@@ -1,32 +1,19 @@
-﻿namespace Ufc.Logic
+﻿namespace Ufc.Logic;
+
+public class CardWinner
 {
-    public class CardWinner
+    public CardWinner(CardScore cardScore)
     {
-        public string FighterName { get; set; }
-        public int NumberCard { get; set; }
-        public int QuantityWinners { get; set; }
+        var bestScore = cardScore.Scores
+            .OrderByDescending(score => score.QuantityWins)
+            .First();
 
-        public CardWinner(CardScore cardScore)
-        {
-
-            Score score1 = null;
-            foreach (var score in cardScore.Scores)
-            {
-                if (score1 == null || score1.QuantityWins < score.QuantityWins)
-                {
-                    score1 = score;
-                }
-
-
-
-            }
-
-
-
-            FighterName = score1.FighetName;
-            QuantityWinners = score1.QuantityWins;
-            NumberCard = cardScore.Card.NumberCard;
-
-        }
+        FighterName = bestScore.FighterName;
+        QuantityWins = bestScore.QuantityWins;
+        NumberCard = cardScore.Card.NumberCard;
     }
+
+    public string FighterName { get; set; }
+    public int NumberCard { get; set; }
+    public int QuantityWins { get; set; }
 }

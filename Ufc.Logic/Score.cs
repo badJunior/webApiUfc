@@ -1,20 +1,19 @@
-﻿namespace Ufc.Logic
+﻿namespace Ufc.Logic;
+
+public class Score
 {
-    public class Score
+    public Score(string fighterName, int quantityWins)
     {
-        public string FighetName { get; set; }
-        public int QuantityWins { get; set; }
-        public Score(string fighterName)
-
-        {
-            FighetName = fighterName;
-            QuantityWins = 1;
-
-
-
-
-
-
-        }
+        FighterName = fighterName;
+        QuantityWins = quantityWins;
     }
+    
+    public Score(string fighterName)
+    {
+        FighterName = fighterName;
+        QuantityWins = 1;
+    }
+
+    public string FighterName { get; set; }
+    public int QuantityWins { get; set; }
 }
