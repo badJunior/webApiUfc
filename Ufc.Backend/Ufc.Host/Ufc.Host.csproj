@@ -7,11 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Ufc.Logic\Ufc.Logic.csproj"/>
+        <ProjectReference Include="..\Ufc.Logic\Ufc.Logic.csproj" />
+        <ProjectReference Include="..\UFC.Services\UFC.Services.csproj" />
     </ItemGroup>
 
 </Project>

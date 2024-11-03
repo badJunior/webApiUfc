@@ -1,4 +1,4 @@
-﻿namespace Ufc.Host;
+﻿namespace UFC.Services.Fighters;
 
 public class InMemoryFightersRepository : IFightersRepository
 {
@@ -31,5 +31,5 @@ public class InMemoryFightersRepository : IFightersRepository
         return _fighters;
     }
 
-    
+
 }

@@ -1,6 +1,6 @@
-﻿namespace Ufc.Host;
+﻿namespace UFC.Services.Fighters;
 
-public interface IFightersRepository
+internal interface IFightersRepository
 {
     IEnumerable<string> GetFighters();
     void AddFighter(string newFighter);
