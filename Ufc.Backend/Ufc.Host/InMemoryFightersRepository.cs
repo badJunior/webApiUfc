@@ -16,8 +16,20 @@ public class InMemoryFightersRepository : IFightersRepository
         , "Holloway"
     ];
 
+    public void AddFighter(string newFighter)
+    {
+        _fighters.Add(newFighter);
+    }
+
+    public void DeleteFighter(string fighterToBeDeleted)
+    {
+        _fighters.Remove(fighterToBeDeleted);
+    }
+
     public IEnumerable<string> GetFighters()
     {
         return _fighters;
     }
+
+    
 }

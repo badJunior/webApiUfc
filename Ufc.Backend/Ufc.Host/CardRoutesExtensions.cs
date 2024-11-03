@@ -2,8 +2,8 @@
 
 namespace Ufc.Host;
 
-public static class RoutesExtensions
-{
+public static class CardRoutesExtensions
+{    
     public static IResult GetCardWinners(int cardsCount, IFightersRepository fightersRepository)
     {
         if (cardsCount <= 0)
@@ -25,7 +25,7 @@ public static class RoutesExtensions
         return Results.Ok(cardWinners);
     }
 
-    public static void RegisterRoutes(this WebApplication app)
+    public static void RegisterCardRoutes(this WebApplication app)
     {
         app.MapGet("/cards", GetCardWinners);
     }

@@ -18,5 +18,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.RegisterRoutes();
+app.RegisterFighterRoutes();
+app.RegisterCardRoutes();
 app.Run();
