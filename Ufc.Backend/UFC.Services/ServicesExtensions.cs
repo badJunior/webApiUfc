@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UFC.Services.Fighters;
+using UFC.Services.Cards;
 
 namespace UFC.Services
 {
@@ -13,7 +14,8 @@ namespace UFC.Services
         public static void RegisterServicesLayerDependencies(this IServiceCollection collection)
         {
            collection.AddSingleton<IFightersRepository, InMemoryFightersRepository>();
-          collection.AddTransient<IFightersService, FightersService>();
+           collection.AddTransient<IFightersService, FightersService>();
+            collection.AddSingleton<ICardsRepository, InMemoryCardsRepository>();
         }
     }
 
