@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-interface IWinner{  
-        fighterName: string,
-        numberCard: number,
-        quantityWins: number
+interface IWinner {
+  fighterName: string;
+  numberCard: number;
+  quantityWins: number;
 }
 
 function WinnersList() {
@@ -14,19 +14,19 @@ function WinnersList() {
   });
 
   return (
-    <div>
+    <div className="h-full bg-slate-400 overflow-hidden rounded-lg p-1">
       {isPending ? (
         <div>Loading...</div>
       ) : (
-          <div className="bg-slate-400 rounded-lg p-1 grid grid-cols-[auto,1fr,auto] gap-1">
-            {data?.map((winner) => (
-              <>
+        <div className="grid h-full overflow-auto grid-cols-[auto,1fr,auto] gap-1">
+          {data?.map((winner) => (
+            <>
               <span>{winner.numberCard}</span>
               <span>{winner.fighterName}</span>
               <span>{winner.quantityWins}</span>
-              </>
-            ))}
-          </div>
+            </>
+          ))}
+        </div>
       )}
     </div>
   );

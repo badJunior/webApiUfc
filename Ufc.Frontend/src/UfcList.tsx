@@ -5,23 +5,28 @@ import WinnersList from "./WinnersList";
 function UfcList() {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: () => fetch("http://localhost:5242/cards", {
-      method: "POST"
-    }).then((res) => res.json()),
+    mutationFn: () =>
+      fetch("http://localhost:5242/cards", {
+        method: "POST",
+      }),
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["winners"], exact: false })
-    }});
+      queryClient.invalidateQueries({ queryKey: ["winners"], exact: false });
+    },
+  });
   return (
     <div className="flex size-full justify-center bg-slate-500">
       <div className="flex flex-col gap-2">
-        <h1 className="text-5xl font-bold text-center underline">
-          Ufc
-        </h1>
-        <div className="flex flex-col w-[300px] gap-1">
+        <h1 className="text-5xl font-bold text-center underline">UFC</h1>
+        <div className="flex flex-col w-[300px] gap-1 h-full overflow-hidden">
           <FightersList />
+          <button
+            onClick={() => mutation.mutate()}
+            className="bg-slate-600 rounded-lg hover:bg-slate-800 active:bg-slate-900 h-9"
+          >
+            Make card
+          </button>
           <WinnersList />
-          <button onClick={() => mutation.mutate()} className="bg-slate-600 rounded-lg hover:bg-slate-800 active:bg-slate-900 h-9">Make card</button>
         </div>
       </div>
     </div>
