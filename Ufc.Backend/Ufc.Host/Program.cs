@@ -1,9 +1,10 @@
-using Ufc.Host;
+using Ufc.Host.Routes;
+using UFC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<IFightersRepository, InMemoryFightersRepository>();
+builder.Services.RegisterServicesLayerDependencies();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -18,5 +19,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.RegisterRoutes();
+app.RegisterFighterRoutes();
+app.RegisterCardRoutes();
+app.RegisterWinnerRoutes();
 app.Run();
