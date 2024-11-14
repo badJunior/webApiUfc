@@ -3,6 +3,16 @@ using UFC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173");
+        });
+});
+
+
 // Add services to the container.
 builder.Services.RegisterServicesLayerDependencies();
 
@@ -18,6 +28,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
+
 
 app.RegisterFighterRoutes();
 app.RegisterCardRoutes();
