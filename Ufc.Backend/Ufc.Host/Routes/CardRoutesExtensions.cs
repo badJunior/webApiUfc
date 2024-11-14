@@ -1,22 +1,23 @@
-﻿using Ufc.Logic;
+﻿using Microsoft.AspNetCore.Mvc;
+using Ufc.Logic;
 using UFC.Services;
 using UFC.Services.Cards;
 
-namespace Ufc.Host;
+namespace Ufc.Host.Routes;
 
 public static class CardRoutesExtensions
-{    
-   
+{
+
     public static void RegisterCardRoutes(this WebApplication app)
     {
         // app.MapGet("/cards", GetCardWinners);
         var cards = app.MapGroup("/cards");
         cards.MapGet("/", GetCard);
-        cards.MapPut("/{newCardNuber}", CreateCard);
+        cards.MapPost("/", CreateCard);
         cards.MapDelete("/{cardToDelete}", DeleteCard);
     }
 
-   
+
 
     private static IResult DeleteCard(int cardToDelete, ICardsService service)
     {
@@ -36,18 +37,14 @@ public static class CardRoutesExtensions
         return Results.Ok();
     }
 
-    private static IResult CreateCard(int newCardNumber, ICardsService service)
+    private static IResult CreateCard([FromServices] ICardsService service)
     {
-        if (newCardNumber <=0 )
-        {
-            return Results.BadRequest("Неправильный номер карда");
-        }
 
-        service.AddCard(newCardNumber);
+        service.AddCard();
 
         return Results.Ok();
     }
-    private static IResult GetCard(ICardsService service)
+    private static IResult GetCard([FromServices] ICardsService service)
     {
         return Results.Ok(service.GetCards());
     }

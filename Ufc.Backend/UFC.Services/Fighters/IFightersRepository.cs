@@ -1,9 +1,11 @@
-﻿namespace UFC.Services.Fighters;
+﻿using Ufc.Logic;
+
+namespace UFC.Services.Fighters;
 
 internal interface IFightersRepository
 {
-    IEnumerable<string> GetFighters();
+    IEnumerable<Fighter> GetFighters();
     void AddFighter(string newFighter);
-    void DeleteFighter(string fighterToBeDeleted);
+    void DeleteFighter(int fighterToBeDeleted);
 
 }

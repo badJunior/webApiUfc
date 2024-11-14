@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ufc.Logic;
 
 namespace UFC.Services.Fighters
 {
     public interface IFightersService
     {
-        IEnumerable<string> GetFighters();
+        IEnumerable<Fighter> GetFighters();
         void AddFighter(string newFighter);
-        void DeleteFighter(string fighterToBeDeleted);
+        void DeleteFighter(int fighterToBeDeleted);
     }
 }

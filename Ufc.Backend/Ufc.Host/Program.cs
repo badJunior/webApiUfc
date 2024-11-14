@@ -1,4 +1,4 @@
-using Ufc.Host;
+using Ufc.Host.Routes;
 using UFC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,4 +21,5 @@ if (app.Environment.IsDevelopment())
 
 app.RegisterFighterRoutes();
 app.RegisterCardRoutes();
+app.RegisterWinnerRoutes();
 app.Run();

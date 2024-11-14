@@ -1,9 +1,16 @@
-﻿namespace UFC.Services.Fighters;
+﻿using Ufc.Logic;
+
+namespace UFC.Services.Fighters;
 
 public class InMemoryFightersRepository : IFightersRepository
 {
-    private readonly List<string> _fighters =
-    [
+
+    private readonly List<Fighter> _fighters = new List<Fighter>();
+
+
+    public InMemoryFightersRepository()
+    {
+        var names = new List<string>() { 
         "Makhachev"
         , "Tsarukyan"
         , "Oliveira"
@@ -14,19 +21,36 @@ public class InMemoryFightersRepository : IFightersRepository
         , "Dariush"
         , "Physiology"
         , "Holloway"
-    ];
-
-    public void AddFighter(string newFighter)
-    {
+    };
+        var fighters = names.Select((name, index) => new Fighter(name, index + 1));
+        _fighters.AddRange(fighters);
+    } 
+    public void AddFighter(string newFighterName)
+    { 
+            var id = 1;
+            if (_fighters.Any()) 
+            {
+              
+                var maxNumber  = _fighters.Max(fighter => fighter.Id);
+                id += maxNumber;
+            }   
+        var newFighter = new Fighter(newFighterName,id);
         _fighters.Add(newFighter);
     }
 
-    public void DeleteFighter(string fighterToBeDeleted)
+    public void DeleteFighter(int fighterToBeDeleted)
     {
-        _fighters.Remove(fighterToBeDeleted);
+        if (!_fighters.Any(fighter => fighter.Id == fighterToBeDeleted))
+        {
+            throw new InvalidOperationException("Такого бойца нет");
+
+        }
+
+        _fighters.Remove(_fighters.First(fighter => fighter.Id == fighterToBeDeleted));
+        
     }
 
-    public IEnumerable<string> GetFighters()
+    public IEnumerable<Fighter> GetFighters()
     {
         return _fighters;
     }

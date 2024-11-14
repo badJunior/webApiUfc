@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UFC.Services.Fighters;
 using UFC.Services.Cards;
+using UFC.Services.Winners;
 
 namespace UFC.Services
 {
@@ -15,8 +16,11 @@ namespace UFC.Services
         {
            collection.AddSingleton<IFightersRepository, InMemoryFightersRepository>();
            collection.AddTransient<IFightersService, FightersService>();
-            collection.AddSingleton<ICardsRepository, InMemoryCardsRepository>();
+           collection.AddSingleton<ICardsRepository, InMemoryCardsRepository>();
+           collection.AddTransient<ICardsService, CardsService>();
+           collection.AddTransient<IWinnersService, WinnsersService>();
         }
+
     }
 
     

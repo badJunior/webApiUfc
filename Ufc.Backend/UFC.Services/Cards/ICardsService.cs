@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ufc.Logic;
+using UFC.Services.Fighters;
 
 namespace UFC.Services.Cards
 {
-    internal interface ICardsRepository
+    public interface ICardsService
     {
-        IEnumerable<int> GetCards();
-        void AddCard(int newCard);
+        IEnumerable<Card> GetCards();
+        void AddCard();
         void DeleteCard(int cardToBeDeleted);
     }
 }

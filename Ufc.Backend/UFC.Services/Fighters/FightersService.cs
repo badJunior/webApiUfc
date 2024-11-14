@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ufc.Logic;
 
 namespace UFC.Services.Fighters
 {
@@ -17,28 +18,21 @@ namespace UFC.Services.Fighters
 
         public void AddFighter(string newFighter)
         {
-            if (_repository.GetFighters().Any(fighter => fighter == newFighter))
-            {
-                throw new InvalidOperationException("Такой боец уже есть");
-            }
+            
 
             _repository.AddFighter(newFighter);
 
         }
 
-        public void DeleteFighter(string fighterToBeDeleted)
+        public void DeleteFighter(int fighterToBeDeleted)
         {
-            if (!_repository.GetFighters().Any(fighter => fighter == fighterToBeDeleted))
-            {
-                throw new InvalidOperationException("Такого бойца нет");
-
-            }
+          
 
             _repository.DeleteFighter(fighterToBeDeleted);
 
         }
 
-        public IEnumerable<string> GetFighters()
+        public IEnumerable<Fighter> GetFighters()
         {
             return _repository.GetFighters();
         }
