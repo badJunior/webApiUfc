@@ -35,4 +35,5 @@ app.UseCors();
 app.RegisterFighterRoutes();
 app.RegisterCardRoutes();
 app.RegisterWinnerRoutes();
+app.RegisterBestOftheBestWinnerRoutes();
 app.Run();
