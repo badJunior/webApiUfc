@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace Ufc.Logic;
 
-public class BestOfTheBest
+public class BestFighter
 {
-    public BestOfTheBest (CardWinner cardWinner)
+    public BestFighter (string name, int winCount)
     {
-        var bestScore = cardWinner;
-
-        FighterName = bestScore.FighterName;
-        QuantityWins = bestScore.QuantityWins;
-        
+        FighterName = name;
+        QuantityWins = winCount;
     }
 
     public string FighterName { get; set; }

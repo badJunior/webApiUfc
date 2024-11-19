@@ -9,7 +9,7 @@ namespace UFC.Services.BestWinners
 {
     public interface IBestWinnersService
     {
-        IEnumerable<BestOfTheBest> GetWinners();
+        IEnumerable<BestFighter> GetWinners();
     }
 }
 

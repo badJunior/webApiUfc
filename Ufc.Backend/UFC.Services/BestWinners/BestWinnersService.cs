@@ -16,33 +16,20 @@ namespace UFC.Services.BestWinners
         {
             _cardsRepository = cardsRepository;
         }
-        public IEnumerable<BestOfTheBest> GetWinners()
+
+        public IEnumerable<BestFighter> GetWinners()
         {
             var cards = _cardsRepository.GetCards();
             var cardScores = cards.Select(card => new CardScore(card));
             var cardWinners = cardScores.Select(cardScore => new CardWinner(cardScore));
-            var bestOfTheBests = cardWinners.Select(cardWinner => new BestOfTheBest(cardWinner)).OrderByDescending(cardWinner=>cardWinner).Take(3);
-            estOfTheBests bestOfTheBest;
-            foreach (bestOfTheBest in bestOfTheBests)
-            {
-                foreach (var cardWinner in cardWinners)
-                {
-                    if (bestOfTheBest.FighterName == cardWinner.FighterName)
-                    {
-                        bestOfTheBest.QuantityWins += cardWinner.QuantityWins;
-                    }
 
-                   
-                }
-            }
+            var bestFightersList = cardWinners
+                .GroupBy(cardWinner => cardWinner.FighterName)
+                .Select(bestFighter => new BestFighter(
+                    bestFighter.Key
+                    , bestFighter.Sum(bestFighterScore => bestFighterScore.QuantityWins)));
 
-            if (bestOfTheBest == null)
-            {
-                bestOfTheBests.Add(new())
-            }
-            return bestOfTheBest;
+            return bestFightersList.OrderByDescending(bestFighter => bestFighter.QuantityWins).Take(3);
         }
-
-        
     }
 }
