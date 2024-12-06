@@ -13,11 +13,11 @@ function BestWinnersList() {
   });
 
   return (
-    <div className="h-full bg-slate-400 overflow-hidden rounded-lg p-1">
+    <div className="h-auto bg-slate-400 overflow-hidden rounded-lg p-1">
       {isPending ? (
         <div>Loading...</div>
       ) : (
-        <div className="grid h-full overflow-auto grid-cols-[1fr,auto] gap-1">
+        <div className="grid h-auto overflow-auto grid-cols-[1fr,auto] gap-1">
           {data?.map((bestWinner) => (
             <>
               <span>{bestWinner.fighterName}</span>

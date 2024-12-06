@@ -17,8 +17,8 @@ function FightersList() {
       {isPending ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex flex-col gap-1">
-          <ul className="bg-slate-400 rounded-lg p-1">
+        <div className="flex flex-col gap-1 h-full">
+          <ul className="bg-slate-400 rounded-lg p-1 h-full">
             {data?.map((fighter: IFighter) => (
               <li>{fighter.name}</li>
             ))}
