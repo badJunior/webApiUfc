@@ -13,7 +13,7 @@ function BestWinnersList() {
   });
 
   return (
-    <div className="h-auto bg-slate-400 overflow-hidden rounded-lg p-1">
+    <div className="h-auto min-h-fit w-full bg-slate-400 overflow-hidden rounded-lg p-1">
       {isPending ? (
         <div>Loading...</div>
       ) : (

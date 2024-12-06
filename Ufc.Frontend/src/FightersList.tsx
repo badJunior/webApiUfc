@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 interface IFighter {
   id: number;
   name: string;
 }
 
-function FightersList() {
+function FightersComponent() {
   const { isPending, data } = useQuery<IFighter[]>({
     queryKey: ["fighters"],
     queryFn: () =>
@@ -13,20 +14,34 @@ function FightersList() {
   });
 
   return (
-    <div>
-      {isPending ? (
+    <div className="h-full">
+      {isPending || data == null ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex flex-col gap-1 h-full">
-          <ul className="bg-slate-400 rounded-lg p-1 h-full">
-            {data?.map((fighter: IFighter) => (
-              <li>{fighter.name}</li>
-            ))}
-          </ul>
-        </div>
+        <FightersList fighters={data} />
       )}
     </div>
   );
 }
 
-export default FightersList;
+function FightersList(props: { fighters: IFighter[] }) {
+  return (
+    <div className="flex flex-col gap-1 h-full">
+      <ul className="bg-slate-400 rounded-lg p-1 h-full">
+        {props.fighters.map((fighter: IFighter) => (
+          <FightersListItem fighter={fighter} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function FightersListItem(props: { fighter: IFighter }) {
+  return (
+    <li className="hover:bg-slate-500 active:bg-slate-600 select-none rounded-lg cursor-pointer">
+      <span className="m-1">{props.fighter.name}</span>
+    </li>
+  );
+}
+
+export default FightersComponent;

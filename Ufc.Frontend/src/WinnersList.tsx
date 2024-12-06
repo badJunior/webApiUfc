@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 interface IWinner {
   fighterName: string;
@@ -18,17 +19,25 @@ function WinnersList() {
       {isPending ? (
         <div>Loading...</div>
       ) : (
-        <div className="grid h-full overflow-auto grid-cols-[auto,1fr,auto] gap-1">
-          {data?.map((winner) => (
-            <>
-              <span>{winner.numberCard}</span>
-              <span>{winner.fighterName}</span>
-              <span>{winner.quantityWins}</span>
-            </>
-          ))}
+        <div className="size-full overflow-y-auto">
+          <table className="grid h-auto gap-1">
+            {data?.map((winner) => (
+              <WinnersListItem winner={winner} />
+            ))}
+          </table>
         </div>
       )}
     </div>
+  );
+}
+
+function WinnersListItem(props: { winner: IWinner }) {
+  return (
+    <tr className="flex gap-2 hover:bg-slate-500">
+      <span className="shrink">{props.winner.numberCard}</span>
+      <span className="grow">{props.winner.fighterName}</span>
+      <span className="shrink">{props.winner.quantityWins}</span>
+    </tr>
   );
 }
 
